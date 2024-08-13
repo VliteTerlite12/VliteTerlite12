@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Uptime Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Uptime Checker</h1>
+    <div id="statusContainer"></div>
+
+    <script>
+        const websites = [
+            { name: "Google", url: "https://www.google.com" },
+            { name: "GitHub", url: "https://github.com" },
+            { name: "Stack Overflow", url: "https://stackoverflow.com" }
+        ];
+
+        function checkUptime(website) {
+            const statusDiv = document.createElement('div');
+            statusDiv.className = 'status';
+            statusDiv.innerHTML = `Checking ${website.name}...`;
+            document.getElementById('statusContainer').appendChild(statusDiv);
+
+            fetch(website.url, { mode: 'no-cors' })
+                .then(() => {
+                    statusDiv.innerHTML = `${website.name} is up!`;
+                    statusDiv.style.color = 'green';
+                })
+                .catch(() => {
+                    statusDiv.innerHTML = `${website.name} is down or unreachable.`;
+                    statusDiv.style.color = 'red';
+                });
+        }
+
+        websites.forEach(checkUptime);
+    </script>
+</body>
+</html>
