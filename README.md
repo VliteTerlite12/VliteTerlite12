@@ -1,7 +1,3 @@
-# Website Uptime Checker
-
-## Kode HTML
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
